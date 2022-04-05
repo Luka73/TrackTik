@@ -36,10 +36,18 @@ public class Scenario1Test {
         EletronicItems eletronicItems = new EletronicItems(items);
         List<EletronicItem> actual = eletronicItems.sortByPrice(eletronicItems.getItems());
 
+        double totalPrice = 0;
+
+        totalPrice += console.getTotalPrice();
+        totalPrice += television1.getTotalPrice();
+        totalPrice += television2.getTotalPrice();
+        totalPrice += microwave.getTotalPrice();
+
         assertEquals(console.getPrice(), actual.get(0).getPrice(), DELTA);
         assertEquals(microwave.getPrice(), actual.get(1).getPrice(), DELTA);
         assertEquals(television1.getPrice(), actual.get(2).getPrice(), DELTA);
         assertEquals(television2.getPrice(), actual.get(3).getPrice(), DELTA);
+        assertEquals(818.95, totalPrice, DELTA);
     }
 
     @Test
