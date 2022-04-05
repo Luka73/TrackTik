@@ -23,4 +23,9 @@ public class EletronicItems {
         return items.size();
     }
 
+    public List<EletronicItem> sortByPrice(List<EletronicItem> items) {
+        items.sort(new EletronicItemComparator());
+        return items;
+    }
+
 }

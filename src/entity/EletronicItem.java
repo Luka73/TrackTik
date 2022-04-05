@@ -2,7 +2,7 @@ package entity;
 
 import java.util.ArrayList;
 
-public class EletronicItem {
+public class EletronicItem implements Comparable<EletronicItem>{
     private double price;
     private boolean wired;
     private EletronicItems extra;
@@ -11,6 +11,8 @@ public class EletronicItem {
 
     }
     protected EletronicItem(double price, boolean wired) {
+        this.price = price;
+        this.wired = wired;
     }
 
     public double getPrice() {
@@ -44,4 +46,8 @@ public class EletronicItem {
     }
 
 
+    @Override
+    public int compareTo(EletronicItem other) {
+        return Double.compare(this.getPrice(), other.getPrice());
+    }
 }
