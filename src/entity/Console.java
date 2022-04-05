@@ -9,7 +9,8 @@ public class Console extends EletronicItem {
         super(price, wired);
     }
 
-    private int maxExtras() {
+    @Override
+    public int maxExtras() {
         return 4;
     }
 }

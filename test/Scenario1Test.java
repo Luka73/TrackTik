@@ -4,10 +4,15 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.junit.Assert.assertEquals;
+
 public class Scenario1Test {
+
+    private static final double DELTA = 1e-15;
+
     @Test
     public void test1() {
-        Console console = new Console(9.10, true);
+        Console console = new Console(89.10, true);
         console.addExtra(TestUtils.getRemoteController());
         console.addExtra(TestUtils.getRemoteController());
         console.addExtra(TestUtils.getWiredController());
@@ -29,10 +34,25 @@ public class Scenario1Test {
         items.add(microwave);
 
         EletronicItems eletronicItems = new EletronicItems(items);
-        List<EletronicItem> sortedItems = eletronicItems.sortByPrice(eletronicItems.getItems());
+        List<EletronicItem> actual = eletronicItems.sortByPrice(eletronicItems.getItems());
 
-        System.out.println("teste");
+        assertEquals(console.getPrice(), actual.get(0).getPrice(), DELTA);
+        assertEquals(microwave.getPrice(), actual.get(1).getPrice(), DELTA);
+        assertEquals(television1.getPrice(), actual.get(2).getPrice(), DELTA);
+        assertEquals(television2.getPrice(), actual.get(3).getPrice(), DELTA);
+    }
 
+    @Test
+    public void test2() {
+        Console console = new Console(89.10, true);
+        console.addExtra(TestUtils.getRemoteController());
+        console.addExtra(TestUtils.getRemoteController());
+        console.addExtra(TestUtils.getWiredController());
+        console.addExtra(TestUtils.getWiredController());
+
+        double actual = console.getTotalPrice();
+
+        assertEquals(131.49, actual, DELTA);
     }
 
 

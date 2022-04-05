@@ -1,5 +1,7 @@
 package entity;
 
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class EletronicItem implements Comparable<EletronicItem>{
@@ -31,7 +33,7 @@ public class EletronicItem implements Comparable<EletronicItem>{
         this.wired = wired;
     }
 
-    private int maxExtras() {
+    protected int maxExtras() {
         return 0;
     }
 
@@ -45,6 +47,17 @@ public class EletronicItem implements Comparable<EletronicItem>{
         }
     }
 
+    public double getTotalPrice() {
+        DecimalFormat df = new DecimalFormat("0.00");
+        df.setRoundingMode(RoundingMode.DOWN);
+        double total = price;
+        if(this.extra != null) {
+            for(EletronicItem i : this.extra.getItems()) {
+                total += i.getPrice();
+            }
+        }
+        return Double.parseDouble(df.format(total));
+    }
 
     @Override
     public int compareTo(EletronicItem other) {
